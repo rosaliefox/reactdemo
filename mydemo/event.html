@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<!--<div id="event"></div>-->
+<!--<script type="text/babel">-->
+    <!--class MyChange extends React.component{-->
+        <!--constructor(props){-->
+            <!--super(props);-->
+            <!--this.state = {clickState:false};-->
+            <!--// 这个绑定是必要的，使`this`在回调中起作用-->
+            <!--this.handleClick = this.handleClick.bind(this);-->
+        <!--}-->
+
+        <!--handleClick(){-->
+            <!--this.setState(this.change());-->
+        <!--}-->
+
+        <!--change(){-->
+            <!--this.state.clickState = !this.state.clickState;-->
+        <!--}-->
+
+        <!--render(){-->
+            <!--var text = this.state.clickState ? 'true' : 'false';-->
+            <!--return <button onClick={this.handleClick}>state is {text}</button>-->
+        <!--}-->
+
+    <!--}-->
+    <!--ReactDOM.render(-->
+      <!--<MyChange/>,-->
+      <!--document.getElementById('event')-->
+  <!--);-->
+<!--</script>-->
+
+
+<div id="eventanother"></div>
+<script type="text/babel">
+    var MyChangeAnother = React.createClass({
+        getInitialState:function () {
+            return {clicked: false};
+        },
+        handleClick:function (e) {
+            this.setState({clicked: !this.state.clicked});
+        },
+        render(){
+            var text = this.state.clicked ? 'true' : 'false';
+            return <p onClick={this.handleClick}>state is {text}</p>
+        }
+    });
+    ReactDOM.render(
+            <MyChangeAnother/>,
+        document.getElementById('eventanother')
+    );
+</script>
+
+<div id="condition"></div>
+
+<script type="text/babel">
+    var MyLoginState = React.createClass({
+        render() {
+            if(this.props.loginState){
+                return <div>loginIn</div>
+            }
+            else {
+                return <div>loginOut</div>
+            }
+        }
+    });
+    ReactDOM.render(
+            <MyLoginState loginState={false}/>,
+        document.getElementById('condition')
+    );
+</script>
+
+
+
+</body>
+</html>

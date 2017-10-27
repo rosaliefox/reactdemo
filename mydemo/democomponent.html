@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="democomponent"></div>
+<script type="text/babel">
+    var MyElement = React.createClass({
+            render: function () {
+                return <div >Hello {this.props.name}</div>
+            }
+        }
+    );
+    ReactDOM.render(
+            <MyElement name="wanwan"/>,
+        document.getElementById('democomponent')
+    );
+</script>
+
+<div id="demofunction"></div>
+<script type="text/babel">
+    function Hello(props) {
+        return <div>hello,{props.name}</div>
+    }
+
+    ReactDOM.render(
+            <Hello name="hahaha"/>,
+        document.getElementById('demofunction')
+    );
+</script>
+
+<div id="democomponentclass"></div>
+<script type="text/babel">
+    class MyComponentDemo extends React.Component {
+        render() {
+            return <div>I,m, {this.props.colors}</div>
+        }
+    }
+
+    ReactDOM.render(
+            <MyComponentDemo colors="greengreen"/>,
+        document.getElementById('democomponentclass')
+    );
+</script>
+
+<!--组件整合-->
+<div id="componentmerge"></div>
+<script type="text/babel">
+    function ComponentMerge(props) {
+        return <div>Hei,this is ComponentMerge,{props.name}</div>;
+    }
+    function MyApp() {
+        return <ComponentMerge name="wanwan"></ComponentMerge>;
+    }
+
+    ReactDOM.render(<MyApp />,
+        document.getElementById('componentmerge')
+    );
+</script>
+
+<!--children-->
+
+<div id="children"></div>
+<script type="text/babel">
+    var ChildrenDemo = React.createClass({
+        render: function (props) {
+            var _this = this;
+            return (
+                    <span>
+                 {
+                     React.Children.map(this.props.children, function (child) {
+                         return <span>{child},{_this.props.name}</span>;
+                     })
+                 }
+              </span>
+            );
+        }
+    });
+    ReactDOM.render(
+            <ChildrenDemo name="wanwan">
+                <span>hello</span>
+                <span>   hei</span>
+            </ChildrenDemo>,
+        document.getElementById('children')
+    );
+</script>
+
+<div id="statedemo"></div>
+<script type="text/babel">
+    class StateDemo extends React.Component {
+        constructor(props) {
+            super(props);
+            this.state = {count: 0};
+        }
+//        渲染Dom时触发
+        componentDidMount() {
+            this.timeId =
+                setInterval(() => this.countPlus(), 1000);
+        }
+//          删除Dom时触发
+        conmponentWillUnMount() {
+          clearInterval(this.timeId);
+        }
+        countPlus() {
+            this.setState(this.add());
+        }
+
+        add(){
+            this.state.count ++;
+        }
+        render() {
+            return <div>hello,count is {this.state.count}</div>
+        }
+    }
+    ReactDOM.render(
+            <StateDemo />,
+        document.getElementById('statedemo')
+    );
+</script>
+
+</body>
+</html>

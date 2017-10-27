@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script src="../build/react.js"></script>
+    <script src="../build/react-dom.js"></script>
+    <script src="../build/browser.min.js"></script>
+</head>
+<body>
+<div id="mydemo2"></div>
+<script type="text/babel">
+    var names = ['Alice', 'Emily', 'Kate'];
+
+    ReactDOM.render(
+            <div>
+                {
+                    names.map(function (name, index) {
+                        return <div key={index}>Hello, {name}!</div>
+                    })
+                }
+            </div>,
+        document.getElementById('mydemo2')
+    );
+</script>
+<div id="mydemo21"></div>
+<script type="text/babel">
+    var myArray = [
+        <div>111111111</div>,
+        <div>222222222</div>
+    ];
+
+    ReactDOM.render(
+            <div>{myArray}</div>,
+        document.getElementById('mydemo21')
+    );
+
+</script>
+</body>
+</html>
